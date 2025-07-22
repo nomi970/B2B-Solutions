@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Solutions - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Country/Language Selector -->
+    <div class="country-selector">
+        <div class="country-dropdown" id="countryDropdown">
+            <div class="selected-country" id="selectedCountry">
+                <img src="https://flagcdn.com/w20/us.png" alt="US Flag" class="flag-icon">
+                <span>English</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="country-options" id="countryOptions">
+                <div class="country-option" data-country="us" data-lang="English">
+                    <img src="https://flagcdn.com/w20/us.png" alt="US Flag" class="flag-icon">
+                    <span>English</span>
+                </div>
+                <div class="country-option" data-country="gb" data-lang="English (UK)">
+                    <img src="https://flagcdn.com/w20/gb.png" alt="UK Flag" class="flag-icon">
+                    <span>English (UK)</span>
+                </div>
+                <div class="country-option" data-country="es" data-lang="Español">
+                    <img src="https://flagcdn.com/w20/es.png" alt="Spain Flag" class="flag-icon">
+                    <span>Español</span>
+                </div>
+                <div class="country-option" data-country="fr" data-lang="Français">
+                    <img src="https://flagcdn.com/w20/fr.png" alt="France Flag" class="flag-icon">
+                    <span>Français</span>
+                </div>
+                <div class="country-option" data-country="de" data-lang="Deutsch">
+                    <img src="https://flagcdn.com/w20/de.png" alt="Germany Flag" class="flag-icon">
+                    <span>Deutsch</span>
+                </div>
+                <div class="country-option" data-country="it" data-lang="Italiano">
+                    <img src="https://flagcdn.com/w20/it.png" alt="Italy Flag" class="flag-icon">
+                    <span>Italiano</span>
+                </div>
+                <div class="country-option" data-country="pt" data-lang="Português">
+                    <img src="https://flagcdn.com/w20/pt.png" alt="Portugal Flag" class="flag-icon">
+                    <span>Português</span>
+                </div>
+                <div class="country-option" data-country="ru" data-lang="Русский">
+                    <img src="https://flagcdn.com/w20/ru.png" alt="Russia Flag" class="flag-icon">
+                    <span>Русский</span>
+                </div>
+                <div class="country-option" data-country="cn" data-lang="中文">
+                    <img src="https://flagcdn.com/w20/cn.png" alt="China Flag" class="flag-icon">
+                    <span>中文</span>
+                </div>
+                <div class="country-option" data-country="jp" data-lang="日本語">
+                    <img src="https://flagcdn.com/w20/jp.png" alt="Japan Flag" class="flag-icon">
+                    <span>日本語</span>
+                </div>
+            </div>
+        </div>
+    </div>
+<section class="login_section">
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="branding-section">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="../public/images/b2b-logo.png" alt="">
+                  
+                </div>
+                <div class="company-description">
+                    <h2>Empowering business with intelligent solutions for the digital future</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="form-section">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>Log In</h1>
+                    <p>Access your AI-powered dashboard</p>
+                </div>
+
+                <!-- REMOVED form tag and method - NO FORM SUBMISSION -->
+                <div id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-container">
+                            <!-- <i class="fas fa-user input-icon"></i> -->
+                             <img class="input-icon" src="../public/images/input_profile_icon.png" alt="input_profile_icon">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                            >
+                        </div>
+                        <label id="username-error" class="error-message" for="username"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-container">
+                            <!-- <i class="fas fa-lock input-icon"></i> -->
+                             <img class="input-icon" src="../public/images/input_password_icon.png" alt="input_password_icon">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="********"
+                                autocomplete="current-password"
+                            >
+                            <button type="button" class="password-toggle" id="passwordToggle" onclick="togglePassword()">
+                                <!-- <i class="fas fa-eye"></i> -->
+                                 <img id="toggleIcon" src="../public/images/eye.png" alt="Toggle Icon" width="24" height="24" style="cursor: pointer;">
+
+                            </button>
+                        </div>
+                        <label id="password-error" class="error-message" for="password"></label>
+                    </div>
+
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember for 30 days</label>
+                        </div>
+                        <a href="#" class="forgot-password" id="forgotPassword" onclick="showForgotModal(); return false;">Forgot password?</a>
+                    </div>
+
+                    <!-- BUTTON with onclick - NO FORM SUBMISSION -->
+                    <button type="button" class="login-btn" id="loginBtn" onclick="handleLogin()">
+                        <span class="btn-text">Login</span>
+                        <div class="loading-spinner" id="loadingSpinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+
+                    <div class="form-footer">
+                        <a href="#" class="footer-link">Terms of Use</a>
+                        <a href="#" class="footer-link">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-header">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Login Successful!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Welcome back! Redirecting to your dashboard...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgotModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <button class="close-modal" onclick="hideForgotModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="forgotForm">
+                    <div class="form-group">
+                        <label for="resetEmail">Email Address</label>
+                        <div class="input-container">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input 
+                                type="email" 
+                                id="resetEmail" 
+                                name="resetEmail" 
+                                placeholder="Enter your email"
+                            >
+                        </div>
+                        <label id="resetEmail-error" class="error-message" for="resetEmail"></label>
+                    </div>
+                    <button type="button" class="reset-btn" onclick="handlePasswordReset()">Send Reset Link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+// DIRECT INLINE FUNCTIONS - NO EVENT LISTENERS NEEDED
+
+function togglePassword() {
+    console.log("Password toggle clicked!");
+    const passwordInput = document.getElementById("password");
+    const icon = document.querySelector("#passwordToggle i");
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordInput.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
+function handleLogin() {
+    console.log("Login button clicked!");
+    
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const remember = document.getElementById("remember").checked;
+    const loginBtn = document.getElementById("loginBtn");
+    
+    console.log("Username:", username, "Password:", password);
+    
+    // Clear previous errors
+    clearErrors();
+    
+    let isValid = true;
+    
+    // Validate username
+    if (!username || username.length < 3) {
+        showFieldError("username", "Username must be at least 3 characters");
+        isValid = false;
+    }
+    
+    // Validate password
+    if (!password || password.length < 6) {
+        showFieldError("password", "Password must be at least 6 characters");
+        isValid = false;
+    }
+    
+    if (!isValid) {
+        console.log("Validation failed!");
+        showNotification("Please fix the errors above", "error");
+        return;
+    }
+    
+    console.log("Validation passed, processing login...");
+    
+    // Show loading state
+    loginBtn.classList.add("loading");
+    loginBtn.disabled = true;
+    
+    // Simulate API call - Accept any credentials that pass validation
+    setTimeout(function() {
+        console.log("Authentication successful!");
+        
+        // Store user session
+        const userData = {
+            username: username,
+            loginTime: new Date().toISOString(),
+            remember: remember
+        };
+        
+        if (remember) {
+            localStorage.setItem("userSession", JSON.stringify(userData));
+        } else {
+            sessionStorage.setItem("userSession", JSON.stringify(userData));
+        }
+        
+        // Show success modal
+        showSuccessModal();
+        
+        // Redirect after delay
+        setTimeout(function() {
+            console.log("Redirecting to dashboard...");
+            window.location.href = "../dashboard/index.html";
+        }, 3000);
+        
+        // Reset button state
+        loginBtn.classList.remove("loading");
+        loginBtn.disabled = false;
+    }, 2000);
+}
+
+function showFieldError(fieldName, message) {
+    const errorElement = document.getElementById(fieldName + "-error");
+    const inputElement = document.getElementById(fieldName);
+    
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.classList.add("show");
+    }
+    
+    if (inputElement) {
+        inputElement.classList.add("error");
+        inputElement.classList.remove("valid");
+    }
+}
+
+function clearErrors() {
+    const errorElements = document.querySelectorAll(".error-message");
+    const inputElements = document.querySelectorAll("input");
+    
+    errorElements.forEach(function(element) {
+        element.classList.remove("show");
+    });
+    
+    inputElements.forEach(function(element) {
+        element.classList.remove("error");
+    });
+}
+
+function showSuccessModal() {
+    const modal = document.getElementById("successModal");
+    if (modal) {
+        modal.classList.add("show");
+        document.body.classList.add("modal-open");
+    }
+}
+
+function showForgotModal() {
+    const modal = document.getElementById("forgotModal");
+    if (modal) {
+        modal.classList.add("show");
+        document.body.classList.add("modal-open");
+    }
+}
+
+function hideForgotModal() {
+    const modal = document.getElementById("forgotModal");
+    if (modal) {
+        modal.classList.remove("show");
+        document.body.classList.remove("modal-open");
+    }
+}
+
+function handlePasswordReset() {
+    const email = document.getElementById("resetEmail").value;
+    
+    if (!email) {
+        showNotification("Please enter your email address", "error");
+        return;
+    }
+    
+    showNotification("Password reset link sent to " + email, "success");
+    hideForgotModal();
+}
+
+function showNotification(message, type) {
+    type = type || "info";
+    
+    const icons = {
+        success: "fa-check-circle",
+        error: "fa-exclamation-circle",
+        warning: "fa-exclamation-triangle",
+        info: "fa-info-circle"
+    };
+    
+    const colors = {
+        success: "#00b894",
+        error: "#e74c3c",
+        warning: "#fdcb6e",
+        info: "#74b9ff"
+    };
+    
+    const notification = document.createElement("div");
+    notification.className = "notification";
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        border-radius: 8px;
+        padding: 15px 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 3000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 350px;
+        border-left: 4px solid ${colors[type]};
+    `;
+    
+    notification.innerHTML = `
+        <i class="fas ${icons[type]}" style="color: ${colors[type]};"></i>
+        <span style="flex: 1;">${message}</span>
+        <button onclick="this.parentElement.remove()" style="background: none; border: none; color: #666; cursor: pointer; padding: 2px;">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(function() {
+        notification.style.transform = "translateX(0)";
+    }, 100);
+    
+    setTimeout(function() {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Country dropdown functionality
+document.addEventListener("DOMContentLoaded", function() {
+    const countryDropdown = document.getElementById("countryDropdown");
+    const selectedCountry = document.getElementById("selectedCountry");
+    
+    if (selectedCountry) {
+        selectedCountry.addEventListener("click", function(e) {
+            e.stopPropagation();
+            countryDropdown.classList.toggle("open");
+        });
+    }
+    
+    const countryOptions = document.querySelectorAll(".country-option");
+    countryOptions.forEach(function(option) {
+        option.addEventListener("click", function() {
+            const flagSrc = this.querySelector(".flag-icon").src;
+            const language = this.dataset.lang;
+            
+            selectedCountry.querySelector(".flag-icon").src = flagSrc;
+            selectedCountry.querySelector("span").textContent = language;
+            
+            countryDropdown.classList.remove("open");
+            showNotification("Language changed to " + language, "success");
+        });
+    });
+    
+    document.addEventListener("click", function() {
+        countryDropdown.classList.remove("open");
+    });
+    
+    console.log("Page loaded successfully! Enter any username and password to login.");
+});
+
+// Allow Enter key to trigger login
+document.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        handleLogin();
+    }
+});
+</script>
+<script>
+  const toggleIcon = document.getElementById('toggleIcon');
+
+  toggleIcon.addEventListener('click', function () {
+    const src = toggleIcon.src;
+
+    if (src.includes('eye.png')) {
+      toggleIcon.src = '../public/images/eye-off.png';
+    } else {
+      toggleIcon.src = '../public/images/eye.png';
+    }
+  });
+</script>
+
+
+</body>
+</html>
